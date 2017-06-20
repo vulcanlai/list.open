@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+	<title>事件循序展開(關閉)列表</title>
+
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.2/normalize.min.css">
+
+	<style type="text/css">
+        ul {
+            list-style-type: decimal;
+        }
+		li {
+			display: none;
+			height: 100px;
+		}
+	</style>
+
+	<body>
+		<ul id="ulBox">
+			<li>scroll 請往下捲動</li>
+			<li>scroll 請往下捲動</li>
+			<li>scroll 請往下捲動</li>
+			<li>scroll 請往下捲動</li>
+			<li>scroll 請往下捲動</li>
+			<li>scroll 請往下捲動</li>
+			<li>scroll 請往下捲動</li>
+			<li>scroll 請往下捲動</li>
+			<li>scroll 請往下捲動</li>
+			<li>scroll 請往下捲動</li>
+			<li>scroll 請往下捲動</li>
+			<li>scroll 請往下捲動</li>
+			<li>scroll 請往下捲動</li>
+			<li>scroll 請往下捲動</li>
+			<li>scroll 請往下捲動</li>
+			<li>scroll 請往下捲動</li>
+			<li>scroll 請往下捲動</li>
+			<li>scroll 請往下捲動</li>
+			<li>scroll 請往下捲動</li>
+			<li>scroll 請往下捲動</li>
+			<li>scroll 請往下捲動</li>
+			<li>scroll 請往下捲動</li>
+			<li>scroll 請往下捲動</li>
+			<li>scroll 請往下捲動</li>
+			<li>scroll 請往下捲動</li>
+			<li>scroll 請往下捲動</li>
+			<li>scroll 請往下捲動</li>
+			<li>scroll 請往下捲動</li>
+			<li>scroll 請往下捲動</li>
+			<li>scroll 請往下捲動</li>
+			<li>scroll 請往下捲動</li>
+			<li>scroll 請往下捲動</li>
+			<li>scroll 請往下捲動</li>
+			<li>scroll 請往下捲動</li>
+			<li>scroll 請往下捲動</li>
+			<li>scroll 請往下捲動</li>
+			<li>scroll 請往下捲動</li>
+			<li>scroll 請往下捲動</li>
+			<li>scroll 請往下捲動</li>
+			<li>scroll 請往下捲動</li>
+		</ul>
+
+		<script>
+			var doctop = document.body.scrollTop;
+			var ulBox = document.getElementById("ulBox");
+			var liArr = document.getElementsByTagName("li");
+			for (var i = 0; i < liArr.length; i++) {
+                
+				// 預設前10則顯示
+				var len = 10;
+				for (var x = 0; len > x; x++) {
+					liArr[x].style.display = "list-item";
+					window.addEventListener('scroll', function (e) {
+						var documentTop = document.body.scrollTop;
+						var winScrollBottom = window.outerHeight + document.body.scrollTop;
+						if (doctop < documentTop) {
+							console.log('往下');
+                            var g = liArr.length - len;
+                            // g；列表剩餘數量
+                            for (var z = 0; g > z ; z++) {
+                                if (winScrollBottom > ulBox.offsetHeight - 10) {
+                                    var z = len++;
+                                    liArr[z].style.display = "list-item";
+                                    console.log(z+1);
+                                }
+                            }
+                            // z；剩餘列表
+						}
+						if (doctop > documentTop) {
+							console.log('往上');
+						}
+						doctop = documentTop;
+					});
+				}
+                // x；初始化的可見數量
+			}
+            // i；列表總數量
+		</script>
+	</body>
+
+</html>
